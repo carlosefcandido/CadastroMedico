@@ -4,29 +4,44 @@ Este projeto é um sistema de cadastro médico que permite a criação, leitura,
 
 ## Estrutura do Projeto
 
+A organização foi aprimorada para separar melhor as responsabilidades. Agora, a pasta `src` está subdividida da seguinte forma:
+
 ```
 CadastroMedico
-├── public
-│   ├── index.php         # Página inicial da aplicação
-│   ├── cadastro.php      # Formulário para cadastro de registros médicos
-│   ├── read.php          # Página para listagem e navegação dos registros médicos
-│   ├── update_form.php   # Formulário para atualização dos registros médicos
-│   └── assets            # Pasta contendo recursos estáticos
-│       ├── css
-│       │   └── style.css # Estilos para as páginas HTML
-│       └── js
-│           └── script.js # Funcionalidades em JavaScript
-├── src
-│   ├── config.php        # Configurações da aplicação PHP (opcional)
-│   ├── db.php            # Conexão com o banco de dados MySQL
-│   ├── create.php        # Lógica para inserir novos registros médicos
-│   ├── read.php          # Lógica para recuperar registros médicos (backend)
-│   ├── update.php        # Lógica para atualizar registros médicos existentes
-│   └── delete.php        # Lógica para deletar registros médicos
-├── sql
-│   └── database.sql      # Script SQL para criação das tabelas do banco de dados
-└── README.md             # Documentação do projeto
+├── public                      # Arquivos públicos e interface do usuário
+│   ├── index.php               # Página inicial da aplicação
+│   ├── cadastroPaciente.php    # Formulário para cadastro de pacientes
+│   ├── cadastroMedico.php      # Formulário para cadastro de registros médicos
+│   ├── footer.php              # Rodapé
+│   ├── header.php              # Cabeçalho
+│   ├── readMedico.php          # Página para listagem dos registros médicos
+│   ├── readPaciente.php        # Página para listagem dos pacientes
+│   ├── formUpdateMedico.php    # Formulário para atualização dos registros médicos
+├── assets                      # Recursos estáticos (CSS, JavaScript, imagens)
+│   ├── css
+│   │   └── style.css           # Estilos para as páginas HTML
+│   └── js
+│       └── script.js           # Funcionalidades em JavaScript
+├── src                         # Lógica de back-end e acesso ao banco de dados
+│   ├── db.php                  # Conexão com o banco de dados MySQL
+│   ├── medico                  # Funcionalidades específicas dos registros médicos
+│   │   ├── createMedico.php     # Lógica para inserir novos registros médicos
+│   │   ├── deleteMedico.php     # Lógica para deletar registros médicos
+│   │   ├── medico_functions.php # Funções CRUD para os médicos
+│   │   └── updateMedico.php     # Lógica para atualizar registros médicos
+│   ├── paciente                # Funcionalidades relacionadas aos pacientes
+│   │   ├── createPaciente.php   # Lógica para inserir novos registros de pacientes
+│   │   ├── deletePaciente.php   # Lógica para deletar registros de pacientes
+│   │   ├── pacienteFunctions.php# Funções CRUD para os pacientes
+│   │   └── updatePaciente.php   # Lógica para atualizar registros de pacientes
+│   └── evolucao                  # Funcionalidades específicas as evoluções
+├── sql                         # Scripts SQL para configuração do banco de dados
+│   └── database.sql            # Script para criação das tabelas necessárias
+├── index.php                   # Página que redireciona para a página inicial da aplicação
+└── README.md                   # Documentação do projeto
 ```
+
+Essa estrutura facilita a separação entre a camada de apresentação (pasta **public**), a lógica de negócio e o acesso aos dados (pasta **src**) e os scripts de configuração do banco (pasta **sql**). Adapte essa organização conforme as necessidades futuras do projeto.
 
 ## Instruções de Configuração
 
