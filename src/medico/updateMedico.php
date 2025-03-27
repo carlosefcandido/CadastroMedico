@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once '../medico/medico_functions.php';
 
 // Verifica se o método de requisição é POST para processar os dados enviados
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -19,50 +19,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $subespecialidades = $_POST['subespecialidades'];
     $data_emissao_crm = $_POST['data_emissao_crm'];
 
-    // Estabelece a conexão com o banco de dados, usando a função connect() definida em db.php
-    $conn = connect();
-
-    // Prepara a query SQL para atualizar os dados do registro no banco de dados
-    // Utiliza placeholders (?) para prevenir injeção de SQL
-    $sql = "UPDATE medicos SET 
-                nome = ?, 
-                cpf = ?, 
-                rg = ?, 
-                data_nascimento = ?, 
-                genero = ?, 
-                telefone = ?, 
-                email = ?, 
-                endereco = ?, 
-                numero_crm = ?, 
-                estado_crm = ?, 
-                especialidades = ?, 
-                subespecialidades = ?, 
-                data_emissao_crm = ? 
-            WHERE id = ?";
-
-    // Prepara a declaração (statement) usando a conexão PDO
-    $stmt = $conn->prepare($sql);
-
-    // Agrupa os parâmetros num array na ordem em que os placeholders aparecem na query
-    $params = [
-        $nome,                // Nome
-        $cpf,                 // CPF
-        $rg,                  // RG
-        $data_nascimento,     // Data de Nascimento
-        $genero,              // Gênero
-        $telefone,            // Telefone
-        $email,               // E-mail
-        $endereco,            // Endereço
-        $crm,                 // Número do CRM
-        $estado_crm,          // Estado do CRM
-        $especialidades,      // Especialidades
-        $subespecialidades,   // Subespecialidades
-        $data_emissao_crm,    // Data de Emissão do CRM
-        $id                   // ID do registro a ser atualizado
-    ];
+    $result = updateMedico($id, [
+        'nome' => $nome,
+        'cpf' => $cpf,
+        'rg' => $rg,
+        'data_nascimento' => $data_nascimento,
+        'genero' => $genero,
+        'telefone' => $telefone,
+        'email' => $email,
+        'endereco' => $endereco,
+        'numero_crm' => $crm,
+        'estado_crm' => $estado_crm,
+        'especialidades' => $especialidades,
+        'subespecialidades' => $subespecialidades,
+        'data_emissao_crm' => $data_emissao_crm
+    ]);
 
     // Executa a query de atualização com os parâmetros fornecidos
-    if ($stmt->execute($params)) {
+    if ($result === true) {
         // Se a atualização ocorrer com sucesso, exibe uma página HTML com mensagem de sucesso
         // e utiliza meta tag para redirecionar para a página inicial após 5 segundos
         echo "<html lang='pt-BR'>
@@ -70,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <meta charset='UTF-8'>
             <title>Cadastro atualizado com sucesso!</title>
             <!-- Redireciona para index.php após 5 segundos -->
-            <meta http-equiv='refresh' content='5;url=../public/index.php'>
+            <meta http-equiv='refresh' content='5;url=../../public/index.php'>
             <style>
                 /* Estilos simples para a mensagem de sucesso e layout da página */
                 body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }
@@ -88,10 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erro ao atualizar o registro: " . $errorInfo[2];
     }
 
-    // Libera os recursos associados à declaração
-    $stmt->closeCursor();
-    // Fecha a conexão com o banco de dados
-    $conn = null;
 } else {
     // Se o método da requisição não for POST, exibe uma mensagem de erro
     echo "Método de requisição inválido.";

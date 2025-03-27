@@ -1,6 +1,6 @@
 <header>
     <!-- Título principal exibido no cabeçalho -->
-    <h1>Bem-vindo ao Cadastro Médico</h1>
+    <h1>Sistema de Gerenciamento de Clínicas</h1>
     <!-- Menu de navegação -->
     <nav>
         <ul>
@@ -23,7 +23,7 @@
                     <!-- Link para cadastro de paciente -->
                     <li><a href="cadastroPaciente.php">Cadastrar Paciente</a></li>
                     <!-- Link para atualização de paciente -->
-                    <li><a href="readPacientes.php">Atualizar Paciente</a></li>
+                    <li><a href="readPaciente.php">Atualizar Paciente</a></li>
                 </ul>
             </li>
         </ul>

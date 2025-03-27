@@ -102,6 +102,7 @@ header nav ul li ul li a:hover {
     overflow: hidden; /* Evita vazamento de elementos fora do container */
 }
 
+
 /* Estilização do formulário */
 form {
     background: #ffffff; /* Fundo branco */
@@ -190,7 +191,7 @@ table a[href*="formUpdateMedico.php"] {
     background-color: #28a745; /* Verde para editar */
 }
 
-table a[href*="delete.php"] {
+table a[href*="deleteMedico.php"] {
     background-color: #dc3545; /* Vermelho para excluir */
 }
 

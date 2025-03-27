@@ -17,7 +17,7 @@
     <!-- Container principal para centralizar o conteúdo -->
     <div class="container">
         <!-- Formulário de cadastro, que envia os dados via método POST para create.php -->
-        <form id="cadastroForm" action="../src/create.php" method="POST">
+        <form id="cadastroForm" action="../src/medico/createMedico.php" method="POST">
             <!-- Fieldset para agrupar os dados pessoais -->
             <fieldset>
                 <legend>Dados Pessoais</legend>

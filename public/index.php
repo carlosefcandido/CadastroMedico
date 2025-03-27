@@ -19,7 +19,8 @@
             <!-- Subtítulo explicando a funcionalidade do sistema -->
             <h2>Sobre o Sistema</h2>
             <!-- Parágrafo explicativo sobre o propósito do sistema -->
-            <p>Este sistema permite o cadastro, alteração e exclusão de registros médicos e de pacientes.</p>
+            <p>Este sistema permite o gerenciamento dos prontuários dos pacientes.</p>
+            <p>Assim como cadastro de médicos e evoluções.</p>
         </section>
     </main>
     <!-- Rodapé da página -->

@@ -10,9 +10,12 @@ CadastroMedico
 │   ├── index.php         # Página inicial da aplicação
 │   ├── cadastro.php      # Formulário para cadastro de registros médicos
 │   ├── read.php          # Página para listagem e navegação dos registros médicos
-│   ├── update_form.php   # Formulário para atualização de registros médicos
-│   ├── style.css         # Estilos para as páginas HTML
-│   └── script.js         # Funcionalidades em JavaScript
+│   ├── update_form.php   # Formulário para atualização dos registros médicos
+│   └── assets            # Pasta contendo recursos estáticos
+│       ├── css
+│       │   └── style.css # Estilos para as páginas HTML
+│       └── js
+│           └── script.js # Funcionalidades em JavaScript
 ├── src
 │   ├── config.php        # Configurações da aplicação PHP (opcional)
 │   ├── db.php            # Conexão com o banco de dados MySQL
@@ -21,7 +24,7 @@ CadastroMedico
 │   ├── update.php        # Lógica para atualizar registros médicos existentes
 │   └── delete.php        # Lógica para deletar registros médicos
 ├── sql
-│   └── database.sql      # Scripts SQL para criação das tabelas do banco de dados
+│   └── database.sql      # Script SQL para criação das tabelas do banco de dados
 └── README.md             # Documentação do projeto
 ```
 
@@ -29,23 +32,22 @@ CadastroMedico
 
 1. **Clone o repositório:**
    ```bash
-   git clone <URL do repositório>
+   git clone https://github.com/carlosefcandido/CadastroMedico
    ```
 
 2. **Configure o Banco de Dados:**
    - Acesse o MySQL e execute o script contido em `sql/database.sql` para criar as tabelas necessárias.
 
 3. **Configuração do PHP:**
-   - Edite o arquivo `src/config.php` (se existir) para definir as configurações de conexão com o banco de dados. Verifique também as configurações no arquivo `src/db.php` se necessário.
+   - Edite o arquivo `src/db.php` para definir as configurações de conexão com o banco de dados.
 
 4. **Configuração do Servidor:**
-   - Configure o VirtualHost ou use um arquivo `.htaccess` para definir a pasta `public` como raiz do site.
    - Em um ambiente Windows, você pode utilizar o WAMP ou XAMPP para executar o servidor local.
 
 ## Uso
 
 - **Página Inicial:**  
-  Acesse `public/index.php` para visualizar a página inicial.
+  Acesse `seudominio/index.php` para visualizar a página inicial.
 
 - **Cadastro:**  
   Utilize `public/cadastro.php` para cadastrar novos registros médicos.

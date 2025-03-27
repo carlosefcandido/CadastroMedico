@@ -41,7 +41,7 @@ if (!$record) {
     <!-- Container principal para centralizar o conteúdo -->
     <div class="container">
         <!-- Formulário para atualizar os dados do registro, que envia os dados via método POST para update.php -->
-        <form id="updateForm" action="../src/update.php" method="POST">
+        <form id="updateForm" action="../src/medico/updateMedico.php" method="POST">
             <!-- Fieldset para agrupar os dados pessoais -->
             <fieldset>
                 <legend>Dados Pessoais</legend>
