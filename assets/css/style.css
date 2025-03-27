@@ -1,0 +1,238 @@
+/* Aplica o box-sizing para todos os elementos, garantindo que padding e border sejam incluídos na largura total */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilo do body */
+body {
+    font-family: Arial, sans-serif; /* Define a fonte padrão para o site */
+    margin: 0; /* Remove a margem padrão */
+    padding: 0; /* Remove o padding padrão */
+    background-color: #f4f4f4; /* Define uma cor de fundo clara */
+}
+
+/* Estilo para o header, que contém o menu de navegação */
+header {
+    background-color: #333; /* Cor de fundo escura */
+    color: #fff;            /* Cor do texto em branco */
+    padding: 1rem;          /* Espaçamento interno no header */
+}
+
+/* Estilização do título do header */
+header h1 {
+    margin: 0;
+    text-align: center;
+    margin-bottom: 20px; /* Espaça o título do menu */
+}
+
+/* Estilo para o menu de navegação principal */
+header nav ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Organiza os itens em linha */
+    justify-content: center;
+}
+
+/* Itens do menu principal */
+header nav ul > li {
+    position: relative; /* Necessário para posicionar o dropdown */
+    margin-right: 1rem;
+}
+
+/* Link do menu principal */
+header nav ul > li > a,
+header nav ul > li {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito hover para links do menu principal */
+header nav ul > li:hover,
+header nav ul > li:hover > a {
+    background-color: #555;
+}
+
+/* Dropdown: submenu escondido inicialmente */
+header nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%; /* Posiciona abaixo do item pai */
+    left: 0;
+    background-color: #333;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+    min-width: 150px;
+    z-index: 1000;
+}
+
+/* Exibe o dropdown quando o item pai estiver em hover */
+header nav ul li:hover ul {
+    display: block;
+}
+
+/* Itens do submenu */
+header nav ul li ul li {
+    margin: 0;
+}
+
+/* Links do submenu */
+header nav ul li ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito hover para os links do submenu */
+header nav ul li ul li a:hover {
+    background-color: #555;
+}
+
+/* Estilo para o container principal que envolve o conteúdo */
+.container {
+    width: 80%; /* Largura de 80% da tela */
+    margin: auto; /* Centraliza horizontalmente */
+    overflow: hidden; /* Evita vazamento de elementos fora do container */
+}
+
+/* Estilização do formulário */
+form {
+    background: #ffffff; /* Fundo branco */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilização dos inputs e selects */
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="tel"],
+form select {
+    width: 100%; /* Ocupa toda a largura do container */
+    padding: 10px; /* Espaçamento interno */
+    margin: 10px 0; /* Margem vertical */
+    border: 1px solid #ccc; /* Borda cinza clara */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Estilização do botão de submit */
+form button[type="submit"] {
+    display: block;
+    background: #333;
+    color: #ffffff;
+    border: none;
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin: auto;
+}
+
+form button[type="submit"]:hover {
+    background: #494747;
+}
+
+/* Estilização da tabela de registros */
+table {
+    width: 100%; /* Ocupa toda a largura disponível */
+    margin: 20px auto; /* Espaçamento vertical e centralização */
+    border-collapse: collapse; /* Remove espaçamento entre bordas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+/* Cabeçalho da tabela */
+table thead tr {
+    background-color: #333; /* Cor de fundo escura */
+    color: #ffffff; /* Texto branco */
+}
+
+/* Células da tabela */
+table th,
+table td {
+    padding: 10px; /* Espaçamento interno */
+    border: 1px solid #ddd; /* Borda leve */
+    text-align: left;
+}
+
+/* Linhas alternadas no corpo da tabela */
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Efeito hover nas linhas */
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilização dos links de ação */
+table a {
+    display: inline-block; /* Permite controle de margens e quebra de linha */
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    margin: 5px 2px; /* Espaçamento entre os botões */
+}
+
+table a[href*="formUpdateMedico.php"] {
+    background-color: #28a745; /* Verde para editar */
+}
+
+table a[href*="delete.php"] {
+    background-color: #dc3545; /* Vermelho para excluir */
+}
+
+table a:hover {
+    opacity: 0.8;
+}
+
+/* Responsividade: container com overflow para tabelas em telas pequenas */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Habilita scroll horizontal quando necessário */
+    margin-bottom: 20px; /* Espaçamento extra entre a tabela e outros elementos */
+}
+
+/* Media Query para dispositivos menores */
+@media (max-width: 768px) {
+    /* Ajusta padding e fonte nas células da tabela */
+    table th,
+    table td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    /* Ajusta tamanho do título e margens */
+    h1 {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+    
+    /* Adiciona padding ao container em dispositivos pequenos */
+    .container {
+        padding: 0 10px;
+    }
+}
+
+/* Estilização do footer */
+footer {
+    text-align: center;       /* Centraliza o conteúdo */
+    padding: 20px;            /* Espaçamento interno */
+    background: #35424a;      /* Cor de fundo escura */
+    color: #ffffff;           /* Texto branco */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
