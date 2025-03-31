@@ -1,45 +1,50 @@
 <?php
-// Importa o arquivo de conexão com o banco de dados
-require_once 'db.php';
+require_once 'pacienteFunctions.php';
 
-// Verifica se a requisição é do tipo POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recupera os dados enviados pelo formulário
-    $nome            = $_POST['nome'];
-    $cpf             = $_POST['cpf'];
-    $data_nascimento = $_POST['data_nascimento'];
-    $genero          = $_POST['genero'];
-    $telefone        = $_POST['telefone'];
-    $email           = $_POST['email'];
-    $endereco        = $_POST['endereco'];
-
-    // Conecta ao banco de dados
-    $conn = connect();
-
-    // Prepara a query INSERT utilizando placeholders para segurança
-    $sql = "INSERT INTO pacientes (nome, cpf, data_nascimento, genero, telefone, email, endereco)
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-
-    $params = [
-        $nome,
-        $cpf,
-        $data_nascimento,
-        $genero,
-        $telefone,
-        $email,
-        $endereco
+    // Monta o array com os dados recebidos do formulário
+    $data = [
+        'nome_completo'         => $_POST['nome_completo'] ?? '',
+        'nome_social'           => $_POST['nome_social'] ?? '',
+        'cpf'                   => $_POST['cpf'] ?? '',
+        'rg'                    => $_POST['rg'] ?? '',
+        'cartao_sus'            => $_POST['cartao_sus'] ?? '',
+        'data_nascimento'       => $_POST['data_nascimento'] ?? '',
+        'genero'                => $_POST['genero'] ?? '',
+        'estado_civil'          => $_POST['estado_civil'] ?? '',
+        'nacionalidade'         => $_POST['nacionalidade'] ?? '',
+        'naturalidade'          => $_POST['naturalidade'] ?? '',
+        'telefone_principal'    => $_POST['telefone_principal'] ?? '',
+        'telefone_secundario'   => $_POST['telefone_secundario'] ?? '',
+        'email'                 => $_POST['email'] ?? '',
+        'cep'                   => $_POST['cep'] ?? '',
+        'logradouro'            => $_POST['logradouro'] ?? '',
+        'numero'                => $_POST['numero'] ?? '',
+        'complemento'           => $_POST['complemento'] ?? '',
+        'bairro'                => $_POST['bairro'] ?? '',
+        'cidade'                => $_POST['cidade'] ?? '',
+        'estado'                => $_POST['estado'] ?? '',
+        'tipo_sanguineo'        => $_POST['tipo_sanguineo'] ?? '',
+        'alergias'              => $_POST['alergias'] ?? '',
+        'condicoes_medicas'     => $_POST['condicoes_medicas'] ?? '',
+        'medicamentos'          => $_POST['medicamentos'] ?? '',
+        'convenio'              => $_POST['convenio'] ?? '',
+        'numero_convenio'       => $_POST['numero_convenio'] ?? '',
+        'validade_convenio'     => $_POST['validade_convenio'] ?? '',
+        'profissao'             => $_POST['profissao'] ?? '',
+        'escolaridade'          => $_POST['escolaridade'] ?? '',
+        'necessidades_especiais'=> $_POST['necessidades_especiais'] ?? '',
+        'consentimento_dados'   => isset($_POST['consentimento_dados']) ? 1 : 0
     ];
-
-    // Executa a query de inserção dos dados
-    if ($stmt->execute($params)) {
-        // Exibe mensagem de sucesso e redirecionamento após 5 segundos
+    
+    $result = createPaciente($data);
+    
+    if ($result === true) {
         echo "<html lang='pt-BR'>
         <head>
             <meta charset='UTF-8'>
             <title>Paciente cadastrado com sucesso!</title>
-            <!-- Redireciona para index.php após 5 segundos -->
-            <meta http-equiv='refresh' content='5;url=../public/index.php'>
+            <meta http-equiv='refresh' content='5;url=../../public/index.php'>
             <style>
                 body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }
                 h1 { color: #007BFF; }
@@ -52,13 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </html>";
         exit;
     } else {
-        // Exibe a mensagem de erro caso ocorra falha na inserção
-        $errorInfo = $stmt->errorInfo();
-        echo "Erro ao cadastrar paciente: " . $errorInfo[2];
+        echo "Erro ao cadastrar paciente: " . $result;
     }
-
-    // Libera os recursos e fecha a conexão
-    $stmt->closeCursor();
-    $conn = null;
 }
 ?>

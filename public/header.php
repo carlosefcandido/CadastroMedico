@@ -26,6 +26,15 @@
                     <li><a href="readPaciente.php">Atualizar Paciente</a></li>
                 </ul>
             </li>
+            <li>
+                Evolução
+                <ul>
+                    <!-- Link para cadastro de evolução -->
+                    <li><a href="cadastroEvolucao.php">Cadastrar Evolução</a></li>
+                    <!-- Link para atualização de evolução -->
+                    <li><a href="readEvolucao.php">Atualizar Evolução</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </header>
