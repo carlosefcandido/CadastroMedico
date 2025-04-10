@@ -52,8 +52,8 @@ $paciente = getPaciente();
 
     <!-- Container responsivo que envolve a tabela -->
     <div class="table-responsive">
-        <!-- Tabela contendo os registros médicos -->
-        <table>
+        <!-- Tabela contendo os registros médicos -->        
+         <table>
             <!-- Cabeçalho da tabela com os nomes das colunas -->
             <thead>
                 <tr>
@@ -101,7 +101,7 @@ $paciente = getPaciente();
                         <!-- Exibe o estado de emissão do CRM -->
                         <td><?php echo htmlspecialchars($record['telefone_secundario']); ?></td>
                         <!-- Exibe as especialidades médicas -->
-                        <td><?php echo htmlspecialchars($record['email']); ?></td>s
+                        <td><?php echo htmlspecialchars($record['email']); ?></td>
                         <!-- Ações para editar ou excluir o registro -->
                         <td>
                             <!-- Link para editar o registro, passando o ID pela URL -->
