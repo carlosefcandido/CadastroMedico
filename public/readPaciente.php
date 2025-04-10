@@ -10,11 +10,11 @@ require_once '../src/db.php';
  *
  * @return array Lista com os registros médicos.
  */
-function getMedicalRecords() {
+function getPaciente() {
     // Estabelece a conexão com o banco utilizando a função connect() definida no db.php
     $conn = connect();
     // Define a query para selecionar todos os registros da tabela 'medicos'
-    $sql = "SELECT * FROM medicos";
+    $sql = "SELECT * FROM pacientes";
     // Executa a query e obtém o objeto PDOStatement
     $stmt = $conn->query($sql);
     
@@ -31,7 +31,7 @@ function getMedicalRecords() {
 }
 
 // Chama a função e armazena os registros em uma variável para uso no HTML
-$medicalRecords = getMedicalRecords();
+$paciente = getPaciente();
 ?>
 
 <!DOCTYPE html>
@@ -58,58 +58,56 @@ $medicalRecords = getMedicalRecords();
             <thead>
                 <tr>
                     <th>Nome Completo</th>
+                    <th>Nome social</th>
                     <th>CPF</th>
                     <th>RG</th>
+                    <th>Cartão de SUS</th>
                     <th>Data de Nascimento</th>
                     <th>Gênero</th>
-                    <th>Telefone</th>
+                    <th>Estado Civil</th>
+                    <th>Nacionalidade</th>
+                    <th>Naturalidade</th>
+                    <th>Telefone Principal</th>
+                    <th>Telefone Secundário</th>
                     <th>E-mail</th>
-                    <th>Endereço</th>
-                    <th>CRM</th>
-                    <th>Estado CRM</th>
-                    <th>Especialidades</th>
-                    <th>Subespecialidades</th>
-                    <th>Data Emissão CRM</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <!-- Corpo da tabela onde serão iterados os registros -->
             <tbody>
                 <!-- Loop que percorre todos os registros médicos -->
-                <?php foreach ($medicalRecords as $record): ?>
+                <?php foreach ($paciente as $record): ?>
                     <tr>
                         <!-- Exibe o nome completo -->
-                        <td><?php echo htmlspecialchars($record['nome']); ?></td>
+                        <td><?php echo htmlspecialchars($record['nome_completo']); ?></td>
                         <!-- Exibe o CPF -->
-                        <td><?php echo htmlspecialchars($record['cpf']); ?></td>
+                        <td><?php echo htmlspecialchars($record['nome_social']); ?></td>
                         <!-- Exibe o RG -->
+                        <td><?php echo htmlspecialchars($record['cpf']); ?></td>
                         <td><?php echo htmlspecialchars($record['rg']); ?></td>
+                        <td><?php echo htmlspecialchars($record['cartao_sus']); ?></td>
                         <!-- Exibe a data de nascimento formatada como DD/MM/AAAA -->
                         <td><?php echo htmlspecialchars(date("d/m/Y", strtotime($record['data_nascimento']))); ?></td>
                         <!-- Exibe o gênero -->
                         <td><?php echo htmlspecialchars($record['genero']); ?></td>
                         <!-- Exibe o telefone -->
-                        <td><?php echo htmlspecialchars($record['telefone']); ?></td>
+                        <td><?php echo htmlspecialchars($record['estado_civil']); ?></td>
                         <!-- Exibe o e-mail -->
-                        <td><?php echo htmlspecialchars($record['email']); ?></td>
+                        <td><?php echo htmlspecialchars($record['nacionalidade']); ?></td>
                         <!-- Exibe o endereço completo -->
-                        <td><?php echo htmlspecialchars($record['endereco']); ?></td>
+                        <td><?php echo htmlspecialchars($record['naturalidade']); ?></td>
                         <!-- Exibe o número do CRM -->
-                        <td><?php echo htmlspecialchars($record['numero_crm']); ?></td>
+                        <td><?php echo htmlspecialchars($record['telefone_principal']); ?></td>
                         <!-- Exibe o estado de emissão do CRM -->
-                        <td><?php echo htmlspecialchars($record['estado_crm']); ?></td>
+                        <td><?php echo htmlspecialchars($record['telefone_secundario']); ?></td>
                         <!-- Exibe as especialidades médicas -->
-                        <td><?php echo htmlspecialchars($record['especialidades']); ?></td>
-                        <!-- Exibe as subespecialidades -->
-                        <td><?php echo htmlspecialchars($record['subespecialidades']); ?></td>
-                        <!-- Exibe a data de emissão do CRM, formatada como DD/MM/AAAA -->
-                        <td><?php echo htmlspecialchars(date("d/m/Y", strtotime($record['data_emissao_crm']))); ?></td>
+                        <td><?php echo htmlspecialchars($record['email']); ?></td>s
                         <!-- Ações para editar ou excluir o registro -->
                         <td>
                             <!-- Link para editar o registro, passando o ID pela URL -->
-                            <a href="formUpdateMedico.php?id=<?php echo $record['id']; ?>">Editar</a>
+                            <a href="formUpdatePaciente.php?id=<?php echo $record['id']; ?>">Editar</a>
                             <!-- Link para excluir o registro, passando o ID pela URL e confirmando via JavaScript -->
-                            <a href="../src/medico/deleteMedico.php?id=<?php echo $record['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir esse registro?');">Excluir</a>
+                            <a href="../src/paciente/deletePaciente.php?id=<?php echo $record['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir esse registro?');">Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach; // Fim do loop que percorre os registros ?>

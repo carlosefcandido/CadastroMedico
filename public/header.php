@@ -7,16 +7,8 @@
             <!-- Link para a página inicial -->
             <li><a href="index.php">Home</a></li>
             <!-- Menu para Médico -->
-            <li>
-                Médico
-                <ul>
-                    <!-- Link para cadastro de médico -->
-                    <li><a href="cadastroMedico.php">Cadastrar Médico</a></li>
-                    <!-- Link para atualização de médico -->
-                    <li><a href="readMedico.php">Atualizar Médico</a></li>
-                </ul>
-            </li>
-            <!-- Menu para Paciente -->
+            <li><a href="agendamento.php">Agendamento</a></li>
+            <li><a href="atendimento.php">Atendimentos</a></li>
             <li>
                 Paciente
                 <ul>
@@ -27,14 +19,27 @@
                 </ul>
             </li>
             <li>
-                Evolução
+                Médico
                 <ul>
-                    <!-- Link para cadastro de evolução -->
-                    <li><a href="cadastroEvolucao.php">Cadastrar Evolução</a></li>
-                    <!-- Link para atualização de evolução -->
-                    <li><a href="readEvolucao.php">Atualizar Evolução</a></li>
+                    <!-- Link para cadastro de médico -->
+                    <li><a href="cadastroMedico.php">Cadastro Médico</a></li>
+                    <!-- Link para atualização de médico -->
+                    <li><a href="readMedico.php">Especialidades</a></li>
                 </ul>
             </li>
+            <!-- Menu para Paciente -->
+            
+            <li>
+                Convênios
+                <ul>
+                    <!-- Link para cadastro de evolução -->
+                    <li><a href="cadastroEvolucao.php">Cadastro Convênios</a></li>
+                    <!-- Link para atualização de evolução -->
+                    <li><a href="readEvolucao.php">Cadastro Planos</a></li>
+                </ul>
+            </li>
+            <li><a href="index.php">Procedimentos</a></li>
+            <li><a href="index.php">Usuários</a></li>
         </ul>
     </nav>
 </header>

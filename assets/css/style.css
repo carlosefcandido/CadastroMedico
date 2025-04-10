@@ -195,6 +195,14 @@ table a[href*="deleteMedico.php"] {
     background-color: #dc3545; /* Vermelho para excluir */
 }
 
+table a[href*="formUpdatePaciente.php"] {
+    background-color: #28a745; /* Verde para editar */
+}
+
+table a[href*="deletePaciente.php"] {
+    background-color: #dc3545; /* Vermelho para excluir */
+}
+
 table a:hover {
     opacity: 0.8;
 }
@@ -231,7 +239,7 @@ table a:hover {
 footer {
     text-align: center;       /* Centraliza o conteúdo */
     padding: 20px;            /* Espaçamento interno */
-    background: #35424a;      /* Cor de fundo escura */
+    background: #333;      /* Cor de fundo escura */
     color: #ffffff;           /* Texto branco */
     position: relative;
     bottom: 0;
