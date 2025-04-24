@@ -25,6 +25,7 @@
                     <li><a href="cadastroMedico.php">Cadastro Médico</a></li>
                     <!-- Link para atualização de médico -->
                     <li><a href="readMedico.php">Especialidades</a></li>
+                    <li><a href="cadastroAgendaMedica.php">Agenda Médica</a></li>
                 </ul>
             </li>
             <!-- Menu para Paciente -->

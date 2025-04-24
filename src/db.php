@@ -5,7 +5,7 @@
 $host = 'localhost';      // Host do banco de dados
 $dbname = 'cadastro_medico'; // Nome do banco de dados
 $username = 'root';       // Usuário do banco de dados
-$password = '';           // Senha do banco de dados
+$password = 'root';           // Senha do banco de dados
 
 // Função para estabelecer a conexão com o banco de dados utilizando PDO
 function connect() {
