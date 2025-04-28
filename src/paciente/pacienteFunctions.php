@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '/../db.php';
 
+// Cria um novo paciente no banco de dados
 function createPaciente($data) {
     // Conecta ao banco de dados
     $conn = connect();
-    
     // Prepara a query para inserir os dados do paciente
     $stmt = $conn->prepare("INSERT INTO pacientes (
         nome_completo, nome_social, cpf, rg, cartao_sus, data_nascimento, genero, estado_civil, 
@@ -13,7 +13,6 @@ function createPaciente($data) {
         condicoes_medicas, medicamentos, convenio, numero_convenio, validade_convenio, profissao, 
         escolaridade, necessidades_especiais, consentimento_dados
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    
     $params = [
         $data['nome_completo'],
         $data['nome_social'],
@@ -47,7 +46,7 @@ function createPaciente($data) {
         $data['necessidades_especiais'],
         isset($data['consentimento_dados']) ? 1 : 0
     ];
-    
+    // Executa a query e retorna true em caso de sucesso, ou mensagem de erro em caso de falha
     if ($stmt->execute($params)) {
         $stmt->closeCursor();
         $conn = null;
@@ -60,9 +59,9 @@ function createPaciente($data) {
     }
 }
 
+// Atualiza os dados de um paciente existente
 function updatePaciente($id, $data) {
     $conn = connect();
-
     // Prepara a query para atualizar os dados do paciente
     $stmt = $conn->prepare("UPDATE pacientes SET 
         nome_completo = ?, nome_social = ?, cpf = ?, rg = ?, cartao_sus = ?, data_nascimento = ?, 
@@ -72,7 +71,6 @@ function updatePaciente($id, $data) {
         medicamentos = ?, convenio = ?, numero_convenio = ?, validade_convenio = ?, profissao = ?, 
         escolaridade = ?, necessidades_especiais = ?, consentimento_dados = ?
         WHERE id = ?");
-    
     $params = [
         $data['nome_completo'],
         $data['nome_social'],
@@ -107,7 +105,7 @@ function updatePaciente($id, $data) {
         isset($data['consentimento_dados']) ? 1 : 0,
         $id
     ];
-    
+    // Executa a query de atualização e retorna true em caso de sucesso, ou mensagem de erro em caso de falha
     if ($stmt->execute($params)) {
         $stmt->closeCursor();
         $conn = null;
@@ -120,12 +118,12 @@ function updatePaciente($id, $data) {
     }
 }
 
+// Exclui um paciente do banco de dados pelo ID
 function deletePaciente($id) {
     $conn = connect();
-    
     // Prepara a query para deletar o paciente pelo ID
     $stmt = $conn->prepare("DELETE FROM pacientes WHERE id = ?");
-    
+    // Executa a query de exclusão e retorna true em caso de sucesso, ou mensagem de erro em caso de falha
     if ($stmt->execute([$id])) {
         $stmt->closeCursor();
         $conn = null;

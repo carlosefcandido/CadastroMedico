@@ -1,18 +1,18 @@
 <?php
-// Importa o arquivo que contém a função de conexão com o banco de dados
+// Este arquivo processa a exclusão de um médico pelo ID recebido via GET.
+// Chama a função de exclusão e exibe mensagem de sucesso ou erro.
+
 require_once './medico_functions.php';
 
 // Verifica se o parâmetro "id" foi enviado via URL (método GET)
 if (isset($_GET['id'])) {
     $id = $_GET['id']; // Armazena o valor do "id" recebido na variável $id
 
-    // Estabelece a conexão com o banco de dados utilizando a função connect() definida em db.php
-   $result = deleteMedico($id);
+    // Chama a função que exclui o médico do banco
+    $result = deleteMedico($id);
     
-    // Executa a query passando o id como parâmetro
+    // Se a exclusão for bem-sucedida, exibe mensagem de sucesso e redireciona
     if ($result === true) {
-        // Se a exclusão for bem-sucedida, exibe uma página HTML informando o sucesso
-        // e redireciona o usuário para a página inicial (index.php) após 5 segundos
         echo "<html lang='pt-BR'>
         <head>
             <meta charset='UTF-8'>
@@ -20,7 +20,6 @@ if (isset($_GET['id'])) {
             <!-- Redireciona para index.php após 5 segundos -->
             <meta http-equiv='refresh' content='5;url=../../public/index.php'>
             <style>
-                /* Estilos simples para a mensagem de sucesso */
                 body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }
                 h1 { color: rgb(255, 30, 0); }
             </style>
@@ -31,9 +30,8 @@ if (isset($_GET['id'])) {
         </body>
         </html>";
     } else {
-        // Caso haja erro na execução da query de exclusão, captura e exibe a mensagem de erro
-        $errorInfo = $stmt->errorInfo();
-        echo "Erro ao excluir o registro médico: " . $errorInfo[2];
+        // Caso haja erro na execução da query de exclusão, exibe a mensagem de erro
+        echo "Erro ao excluir o registro médico: " . $result;
     }
 
 } else {

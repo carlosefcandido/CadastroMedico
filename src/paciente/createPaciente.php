@@ -1,4 +1,7 @@
 <?php
+// Este arquivo processa o cadastro de um novo paciente.
+// Recebe os dados do formulário, chama a função de criação e exibe mensagem de sucesso ou erro.
+
 require_once 'pacienteFunctions.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -36,9 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'necessidades_especiais'=> $_POST['necessidades_especiais'] ?? '',
         'consentimento_dados'   => isset($_POST['consentimento_dados']) ? 1 : 0
     ];
-    
+    // Chama a função que insere o paciente no banco
     $result = createPaciente($data);
     
+    // Se o cadastro for bem-sucedido, exibe mensagem de sucesso e redireciona
     if ($result === true) {
         echo "<html lang='pt-BR'>
         <head>
@@ -57,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </html>";
         exit;
     } else {
+        // Se ocorrer algum erro, exibe a mensagem de erro
         echo "Erro ao cadastrar paciente: " . $result;
     }
 }

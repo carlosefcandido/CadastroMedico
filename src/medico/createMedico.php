@@ -1,10 +1,12 @@
 <?php
-// Importa o arquivo de conexão com o banco de dados
-require_once './medico/medico_functions.php';
+// Este arquivo processa o cadastro de um novo médico.
+// Recebe os dados do formulário, chama a função de criação e exibe mensagem de sucesso ou erro.
 
+require_once './medico/medico_functions.php';
 
 // Verifica se a requisição foi feita via método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Monta o array de dados do médico a partir do formulário
     $data = [
         'nome'              => $_POST['nome'],
         'cpf'               => $_POST['cpf'],
@@ -21,9 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'data_emissao_crm'  => $_POST['data_emissao_crm']
     ];
     
+    // Chama a função que insere o médico no banco
     $result = createMedico($data);
     
-    // Executa a query e, se bem-sucedida, exibe a mensagem e redireciona para home após alguns segundos.
+    // Se o cadastro for bem-sucedido, exibe mensagem de sucesso e redireciona
     if ($result === true) {
         echo "<!DOCTYPE html>
 <html lang='pt-BR'>
@@ -44,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>";
         exit;
     } else {
-        // Se ocorrer algum erro, captura a mensagem de erro e exibe
+        // Se ocorrer algum erro, exibe a mensagem de erro
         echo "Erro ao realizar cadastro: " . $result;
     }
 }

@@ -1,4 +1,7 @@
 <?php
+// Este arquivo processa a atualização dos dados de um médico existente.
+// Recebe os dados do formulário, chama a função de atualização e exibe mensagem de sucesso ou erro.
+
 require_once '../medico/medico_functions.php';
 
 // Verifica se o método de requisição é POST para processar os dados enviados
@@ -19,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $subespecialidades = $_POST['subespecialidades'];
     $data_emissao_crm = $_POST['data_emissao_crm'];
 
+    // Chama a função que atualiza o médico no banco
     $result = updateMedico($id, [
         'nome' => $nome,
         'cpf' => $cpf,
@@ -35,10 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'data_emissao_crm' => $data_emissao_crm
     ]);
 
-    // Executa a query de atualização com os parâmetros fornecidos
+    // Se a atualização ocorrer com sucesso, exibe mensagem de sucesso e redireciona
     if ($result === true) {
-        // Se a atualização ocorrer com sucesso, exibe uma página HTML com mensagem de sucesso
-        // e utiliza meta tag para redirecionar para a página inicial após 5 segundos
         echo "<html lang='pt-BR'>
         <head>
             <meta charset='UTF-8'>
@@ -46,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Redireciona para index.php após 5 segundos -->
             <meta http-equiv='refresh' content='5;url=../../public/index.php'>
             <style>
-                /* Estilos simples para a mensagem de sucesso e layout da página */
                 body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }
                 h1 { color: #007BFF; }
             </style>
@@ -57,9 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </body>
         </html>";
     } else {
-        // Em caso de erro na execução, captura o erro via errorInfo() e exibe a mensagem de erro
-        $errorInfo = $stmt->errorInfo();
-        echo "Erro ao atualizar o registro: " . $errorInfo[2];
+        // Em caso de erro na execução, exibe a mensagem de erro
+        echo "Erro ao atualizar o registro: " . $result;
     }
 
 } else {
